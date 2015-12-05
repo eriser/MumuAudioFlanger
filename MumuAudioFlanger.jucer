@@ -9,7 +9,7 @@
               pluginSilenceInIsSilenceOut="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="MumuAudioFlangerAU" pluginRTASCategory=""
               aaxIdentifier="com.yourcompany.MumuAudioFlanger" pluginAAXCategory="AAX_ePlugInCategory_Dynamics"
-              jucerVersion="4.0.1" companyName="Numu Audio">
+              jucerVersion="4.0.2" companyName="Numu Audio">
   <MAINGROUP id="l9No4V" name="MumuAudioFlanger">
     <GROUP id="{7E8053C3-1305-1B31-24E4-61FF2C30B910}" name="Resources">
       <FILE id="dbT8Ls" name="MumuLight.png" compile="0" resource="1" file="Resources/MumuLight.png"/>

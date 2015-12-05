@@ -20,10 +20,21 @@
 //==============================================================================
 /**
 */
+
+class NumericalLabel : public Label
+{
+public:
+    void editorShow(TextEditor* editor)
+    {
+        editor->setInputRestrictions(0,"0123456789.");
+    }
+};
+
 class MumuAudioFlangerAudioProcessorEditor  : public AudioProcessorEditor,
                                               public ChangeListener,
                                               Slider::Listener,
                                               Button::Listener,
+                                              Label::Listener,
                                               Timer
 {
 public:
@@ -36,6 +47,7 @@ public:
     void timerCallback() override;
     void sliderValueChanged (Slider* sliderThatWasChanged) override;
     void buttonClicked(Button* button) override;
+    void labelTextChanged (Label* labelChanged) override;
     
     void mouseDown (const MouseEvent &e) override;
     void mouseDrag (const MouseEvent &e) override;
@@ -60,12 +72,11 @@ private:
     
     CustomLookAndFeel myLookAndFeel;
     
+    float crossOverWindowMousePosition;
+    float windowPosition0to1;
+    float windowReceived0to1;
     
-    
-    
-    
-    
-    
+    NumericalLabel windowLabel;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MumuAudioFlangerAudioProcessorEditor)
 };

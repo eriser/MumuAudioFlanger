@@ -27,7 +27,16 @@ MumuAudioFlangerAudioProcessorEditor::MumuAudioFlangerAudioProcessorEditor (Mumu
     processor.addChangeListener(this);
     
     addAndMakeVisible (CrossOverWindow = new CrossoverComponent());
-    CrossOverWindow->setBounds(450, 160, 150, 48);
+    CrossOverWindow->setBounds(500, 160, 80, 20);
+    
+    windowLabel.setEditable(true);
+    windowLabel.setText("Sub Bypass", dontSendNotification);
+    windowLabel.setColour(juce::Label::textColourId, juce::Colour(255.0f, 255.0f, 255.0f));
+    windowLabel.attachToComponent(CrossOverWindow, false);
+    windowLabel.setColour(0x1000283, Colour(255.0f,255.0f,255.0f));
+    windowLabel.setJustificationType(4);
+    windowLabel.addListener(this);
+    addAndMakeVisible(windowLabel);
     
     addAndMakeVisible(knob1 = new Slider("Knob - 1"));
     addAndMakeVisible(knob2 = new Slider("Knob - 2"));
@@ -138,7 +147,8 @@ void MumuAudioFlangerAudioProcessorEditor::timerCallback(){
     knob2->setValue(processor.getParameter(MumuAudioFlangerAudioProcessor::knob2Param), NotificationType::dontSendNotification);
     knob3->setValue(processor.getParameter(MumuAudioFlangerAudioProcessor::knob3Param), NotificationType::dontSendNotification);
     knob4->setValue(processor.getParameter(MumuAudioFlangerAudioProcessor::knob4Param), NotificationType::dontSendNotification);
-    
+    windowReceived0to1 = processor.getParameter(MumuAudioFlangerAudioProcessor::windowComponentParam);
+    CrossOverWindow->setCrossoverFreq(jmap(windowReceived0to1, 0.0f, 150.0f));
 }
 
 void MumuAudioFlangerAudioProcessorEditor::sliderValueChanged(Slider* sliderThatWasChanged)
@@ -180,18 +190,47 @@ void MumuAudioFlangerAudioProcessorEditor::mouseDown(const MouseEvent & e){
     if (e.eventComponent == CrossOverWindow)
     {
         e.getEventRelativeTo(CrossOverWindow);
-        CrossOverWindow->setCrossoverFreq(e.x);
+        crossOverWindowMousePosition = e.x;
+        if (crossOverWindowMousePosition < 0)
+            crossOverWindowMousePosition = 0;
+        if (crossOverWindowMousePosition > CrossOverWindow->getWidth())
+            crossOverWindowMousePosition = CrossOverWindow->getWidth();
+        CrossOverWindow->setCrossoverFreq(crossOverWindowMousePosition);
+        windowPosition0to1 = jmap(crossOverWindowMousePosition,0.0f,150.0f,0.0f,1.0f);
+        processor.setParameterNotifyingHost(MumuAudioFlangerAudioProcessor::windowComponentParam, windowPosition0to1);
     }
 }
 void MumuAudioFlangerAudioProcessorEditor::mouseDrag(const MouseEvent & e){
     if (e.eventComponent == CrossOverWindow)
     {
         e.getEventRelativeTo(CrossOverWindow);
-        CrossOverWindow->setCrossoverFreq(e.x);
+        crossOverWindowMousePosition = e.x;
+        if (crossOverWindowMousePosition < 0)
+            crossOverWindowMousePosition = 0;
+        if (crossOverWindowMousePosition > CrossOverWindow->getWidth())
+            crossOverWindowMousePosition = CrossOverWindow->getWidth();
+        CrossOverWindow->setCrossoverFreq(crossOverWindowMousePosition);
+        windowPosition0to1 = jmap(crossOverWindowMousePosition,0.0f,150.0f,0.0f,1.0f);
+        processor.setParameterNotifyingHost(MumuAudioFlangerAudioProcessor::windowComponentParam, windowPosition0to1);
     }
 }
 void MumuAudioFlangerAudioProcessorEditor::changeListenerCallback (ChangeBroadcaster *source){
     liveAudioScroller->processBlock(processor.currentSampleBuffer);
+}
+
+void MumuAudioFlangerAudioProcessorEditor::labelTextChanged(Label* labelChanged){
+    float frequency = labelChanged->getText().getDoubleValue();
+    if (frequency > 22000)
+    {
+        frequency = 22000;
+    }
+    if (frequency < 0)
+    {
+        frequency = 0;
+    }
+    windowPosition0to1 = jmap(frequency,0.0f,22000.0f,0.0f,1.0f);
+    windowLabel.setText((String)frequency, dontSendNotification);
+    processor.setParameterNotifyingHost(MumuAudioFlangerAudioProcessor::windowComponentParam, windowPosition0to1);
 }
 
 

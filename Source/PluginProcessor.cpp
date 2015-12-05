@@ -16,6 +16,7 @@
 MumuAudioFlangerAudioProcessor::MumuAudioFlangerAudioProcessor() : m_knob1(0),
                                                                    m_knob2(0),
                                                                    m_knob3(0),
+                                                                   m_windowParam(0),
                                                                    button1(1),
                                                                    button2(0)
 {
@@ -81,6 +82,7 @@ float MumuAudioFlangerAudioProcessor::getParameter (int index)
         case knob4Param: return m_knob4;
         case button1Param: return button1;
         case button2Param: return button2;
+        case windowComponentParam: return m_windowParam;
         default: return 0.0;
     }
 }
@@ -90,7 +92,7 @@ void MumuAudioFlangerAudioProcessor::setParameter (int index, float newValue)
     switch (index) {
             //Rate
         case knob1Param: m_knob1 = newValue;
-            m_fLFORate = mapFunc(m_knob1,0,1,0.01,4); //map range 0,1 to 0.001,4
+            m_fLFORate = mapFunc(m_knob1,0,1,0.01,4);
             SineLFOL.setFrequency(m_fLFORate);
             SineLFOR.setFrequency(m_fLFORate);
             TriLFOL.setFrequency(m_fLFORate);
@@ -110,7 +112,9 @@ void MumuAudioFlangerAudioProcessor::setParameter (int index, float newValue)
             FourPDelayR.setFeedback(m_fFeedback); break;
             //Button
         case button1Param: button1 = newValue; break;
-        case button2Param: button2 = newValue;
+        case button2Param: button2 = newValue; break;
+            
+        case windowComponentParam: m_windowParam = newValue; break;
         default: break;
     }
 }
@@ -124,6 +128,7 @@ const String MumuAudioFlangerAudioProcessor::getParameterName (int index)
         case knob4Param: return "Feedback";
         case button1Param: return "Sine Mod";
         case button2Param: return "Tri Mod";
+        case windowComponentParam: return "Window Param";
         default: return String::empty;
     }
 }

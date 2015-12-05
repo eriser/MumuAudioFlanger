@@ -33,14 +33,23 @@ private:
     
     void paint (Graphics& g) override
     {
+        Path lowPass;
+        Path highPass;
         //g.fillAll (Colour(uint8(30),uint8(30),uint8(30),float(1)));
-        g.fillAll (Colour(uint8(0),uint8(0),uint8(0),float(1)));
+        g.fillAll (Colour(uint8(30),uint8(30),uint8(30),float(1)));
         const float midY = getHeight() * 0.5f;
         g.setColour (Colour(uint8(115),uint8(255),uint8(255),float(1)));
         //vertical cutoff line
-        g.drawLine(crossFreq, 0, crossFreq, getHeight());
+        //Lowpass
+        lowPass.startNewSubPath(0, midY);
+        lowPass.quadraticTo(crossFreq-5, midY, crossFreq, getHeight());
+        g.strokePath(lowPass, PathStrokeType(1.5f));
+        //Highpass
+        highPass.startNewSubPath(getWidth(), midY);
+        highPass.quadraticTo(crossFreq+5, midY, crossFreq, getHeight());
+        g.strokePath(highPass, PathStrokeType(1.5f));
         //Horiztonal Line
-        g.drawLine(0,midY,getWidth(),midY);
+        //g.drawLine(0,midY,getWidth(),midY);
         //Box Outline
         g.setColour (Colour(uint8(255),uint8(255),uint8(255),float(1)));
         g.drawLine(0, 0, getWidth(), 0);
@@ -48,11 +57,6 @@ private:
         g.drawLine(0, 0, 0, getHeight());
         g.drawLine(getWidth(), 0, getWidth(), getHeight());
     }
-//    void mouseDown(MouseEvent e)
-//    {
-//        crossFreq = e.x;
-//        std::cout << crossFreq << std::endl;
-//    }
 };
 
 #endif  // CROSSOVERCOMPONENT_H_INCLUDED

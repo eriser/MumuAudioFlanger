@@ -1,18 +1,18 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F1498DD4A8AF942A1413EB451624FC752F99A5FD",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "8D265B267DC5C3074005114BEC39CB47F504779E",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "F1498DD4A8AF942A1413EB451624FC752F99A5FD" : 0,
-    "16C0B2AB65946ACDB302F887AECA215E9EE9649D" : 0,
-    "DEBAC9C6799FD4E8074B3BAF720718E3C3499FA0" : 0
+    "DEBAC9C6799FD4E8074B3BAF720718E3C3499FA0" : 0,
+    "8D265B267DC5C3074005114BEC39CB47F504779E" : 0,
+    "16C0B2AB65946ACDB302F887AECA215E9EE9649D" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "FAB73E7D-5AB0-4125-8A66-66D6F3A4F603",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "F1498DD4A8AF942A1413EB451624FC752F99A5FD" : "MumuAudioFlanger\/",
-    "16C0B2AB65946ACDB302F887AECA215E9EE9649D" : "FourPointDelay\/",
-    "DEBAC9C6799FD4E8074B3BAF720718E3C3499FA0" : "..\/JUCE"
+    "DEBAC9C6799FD4E8074B3BAF720718E3C3499FA0" : "..\/JUCE",
+    "8D265B267DC5C3074005114BEC39CB47F504779E" : "MumuAudioFlanger\/",
+    "16C0B2AB65946ACDB302F887AECA215E9EE9649D" : "FourPointDelay\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "MumuAudioFlanger",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -24,14 +24,14 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "16C0B2AB65946ACDB302F887AECA215E9EE9649D"
     },
     {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jakemumu\/MumuAudioFlanger.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8D265B267DC5C3074005114BEC39CB47F504779E"
+    },
+    {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/julianstorer\/JUCE.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DEBAC9C6799FD4E8074B3BAF720718E3C3499FA0"
-    },
-    {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jakemumu\/MumuAudioFlanger.git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F1498DD4A8AF942A1413EB451624FC752F99A5FD"
     }
   ]
 }

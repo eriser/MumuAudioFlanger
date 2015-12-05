@@ -79,6 +79,7 @@ public:
         knob4Param,
         button1Param,
         button2Param,
+        windowComponentParam,
         totalNumParams
     };
     
@@ -98,6 +99,7 @@ private:
     float m_knob2;  //Mod Depth
     float m_knob3;  //Dry Wet
     float m_knob4;  //Feedback
+    float m_windowParam;
     
     float m_sampleRate;
     float m_bufferSize;
